@@ -160,7 +160,7 @@ p { color: var(--text-light); }
 }
 .logo:hover { text-decoration: none; color: var(--text); }
 .logo span { color: var(--accent); }
-.logo-img { height: 44px; width: auto; display: block; }
+.logo-img { height: 32px; width: auto; display: block; }
 
 .nav { display: flex; align-items: center; gap: 0.5rem; }
 .nav a {
