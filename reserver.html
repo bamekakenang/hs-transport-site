@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Réserver un rendez-vous | HS Transport</title>
+  <meta name="description" content="Demandez un rendez-vous pour votre déménagement, transport, livraison, location ou montage en Île-de-France. Réponse sous 24h.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ====== HEADER ====== -->
+  <header class="header" role="banner">
+    <div class="container">
+      <a href="index.html" class="logo" aria-label="Accueil">HS<span>Transport</span></a>
+      <nav class="nav" id="mainNav" role="navigation" aria-label="Navigation principale">
+        <a href="index.html#services">Services</a>
+        <a href="reserver.html" class="active">Réserver</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mainNav">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ====== FORMULAIRE RDV ====== -->
+  <section class="form-page" id="formSection">
+    <div class="container">
+      <h1>Réserver un rendez‑vous</h1>
+      <p>Remplissez le formulaire ci‑dessous. Nous vous confirmons votre créneau sous 24 h.</p>
+
+      <!-- Wizard indicator -->
+      <div class="wizard-steps">
+        <div class="wizard-step active" data-step="1">
+          <span class="num">1</span>
+          <span>Choix</span>
+        </div>
+        <div class="wizard-divider"></div>
+        <div class="wizard-step" data-step="2">
+          <span class="num">2</span>
+          <span>Détails</span>
+        </div>
+      </div>
+
+      <form id="rdvForm" novalidate>
+        <!-- Honeypot -->
+        <div class="ohnohoney">
+          <label for="website">Ne pas remplir</label>
+          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+        </div>
+
+        <!-- ===== ÉTAPE 1 — Choix ===== -->
+        <div class="wizard-panel active" id="step1">
+
+          <div class="form-group">
+            <label for="service">Service <span class="req">*</span></label>
+            <select id="service" name="service" required>
+              <option value="">— Choisir un service —</option>
+              <option value="demenagement">Déménagement</option>
+              <option value="transport">Transport</option>
+              <option value="livraison">Livraison</option>
+              <option value="location">Location</option>
+              <option value="montage-demontage">Montage & démontage</option>
+            </select>
+            <div class="error-msg">Veuillez choisir un service.</div>
+          </div>
+
+          <div class="form-group">
+            <label for="typeRdv">Type de rendez‑vous <span class="req">*</span></label>
+            <select id="typeRdv" name="typeRdv" required>
+              <option value="">— Choisir —</option>
+              <option value="appel">Appel téléphonique</option>
+              <option value="visite">Visite technique</option>
+            </select>
+            <div class="error-msg">Veuillez choisir un type de rendez‑vous.</div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="dateRdv">Date souhaitée <span class="req">*</span></label>
+              <input type="date" id="dateRdv" name="dateRdv" required>
+              <div class="error-msg">Veuillez indiquer une date.</div>
+            </div>
+            <div class="form-group">
+              <label for="creneau">Créneau <span class="req">*</span></label>
+              <select id="creneau" name="creneau" required>
+                <option value="">— Choisir —</option>
+                <option value="09-10">09 h – 10 h</option>
+                <option value="10-11">10 h – 11 h</option>
+                <option value="11-12">11 h – 12 h</option>
+                <option value="14-15">14 h – 15 h</option>
+                <option value="15-16">15 h – 16 h</option>
+                <option value="16-17">16 h – 17 h</option>
+              </select>
+              <div class="error-msg">Veuillez choisir un créneau.</div>
+            </div>
+          </div>
+
+          <p style="font-size:0.8125rem;margin-top:0.5rem;">⏱ Créneau demandé (confirmation sous 24 h)</p>
+
+          <div class="form-actions">
+            <button type="button" class="btn btn-primary" id="toStep2">Suivant</button>
+          </div>
+        </div>
+
+        <!-- ===== ÉTAPE 2 — Détails ===== -->
+        <div class="wizard-panel" id="step2">
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nom">Nom <span class="req">*</span></label>
+              <input type="text" id="nom" name="nom" required autocomplete="family-name">
+              <div class="error-msg">Veuillez indiquer votre nom.</div>
+            </div>
+            <div class="form-group">
+              <label for="prenom">Prénom <span class="req">*</span></label>
+              <input type="text" id="prenom" name="prenom" required autocomplete="given-name">
+              <div class="error-msg">Veuillez indiquer votre prénom.</div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="telephone">Téléphone <span class="req">*</span></label>
+              <input type="tel" id="telephone" name="telephone" required autocomplete="tel" placeholder="06 12 34 56 78">
+              <div class="error-msg">Veuillez indiquer un numéro valide.</div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email <span class="req">*</span></label>
+              <input type="email" id="email" name="email" required autocomplete="email" placeholder="vous@exemple.fr">
+              <div class="error-msg">Veuillez indiquer un email valide.</div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="villeDepart">Ville / code postal départ <span class="req">*</span></label>
+              <input type="text" id="villeDepart" name="villeDepart" required placeholder="Ex : 75012 Paris">
+              <div class="error-msg">Champ obligatoire.</div>
+            </div>
+            <div class="form-group">
+              <label for="villeArrivee">Ville / code postal arrivée</label>
+              <input type="text" id="villeArrivee" name="villeArrivee" placeholder="Optionnel selon service">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="datePrestation">Date souhaitée de la prestation</label>
+            <input type="date" id="datePrestation" name="datePrestation">
+          </div>
+
+          <div class="form-group">
+            <label for="description">Description du besoin <span class="req">*</span></label>
+            <textarea id="description" name="description" required placeholder="Décrivez votre besoin : volume, nombre de pièces, accès, étages…"></textarea>
+            <div class="error-msg">Veuillez décrire votre besoin.</div>
+          </div>
+
+          <!-- Options dynamiques selon service -->
+          <div id="optionsDemenagement" class="form-group" style="display:none;">
+            <label>Options déménagement</label>
+            <div class="checkbox-group">
+              <label><input type="checkbox" name="opt_emballage" value="1"> Emballage</label>
+              <label><input type="checkbox" name="opt_demontage_remontage" value="1"> Démontage / remontage meubles</label>
+              <label><input type="checkbox" name="opt_monte_meuble" value="1"> Monte‑meuble</label>
+              <label><input type="checkbox" name="opt_cartons" value="1"> Fourniture de cartons</label>
+            </div>
+          </div>
+
+          <div id="optionsTransport" class="form-group" style="display:none;">
+            <label>Options transport / livraison</label>
+            <div class="checkbox-group">
+              <label><input type="checkbox" name="opt_dimensions" value="1"> Objet volumineux (préciser dimensions/poids)</label>
+              <label><input type="checkbox" name="opt_etages" value="1"> Étages sans ascenseur</label>
+              <label><input type="checkbox" name="opt_acces" value="1"> Accès difficile</label>
+            </div>
+          </div>
+
+          <div id="optionsLocation" class="form-group" style="display:none;">
+            <label>Options location</label>
+            <div class="checkbox-group">
+              <label><input type="checkbox" name="opt_camion" value="1"> Camion</label>
+              <label><input type="checkbox" name="opt_monte_meuble_loc" value="1"> Monte‑meuble</label>
+              <label><input type="checkbox" name="opt_outil" value="1"> Outillage spécifique</label>
+            </div>
+            <div class="form-group" style="margin-top:0.75rem;">
+              <label for="dureeLocation">Durée estimée</label>
+              <input type="text" id="dureeLocation" name="dureeLocation" placeholder="Ex : 1 journée, 2 jours…">
+            </div>
+          </div>
+
+          <div id="optionsMontage" class="form-group" style="display:none;">
+            <label>Options montage / démontage</label>
+            <div class="checkbox-group">
+              <label><input type="checkbox" name="opt_type_meubles" value="1"> Préciser type de meubles dans la description</label>
+              <label><input type="checkbox" name="opt_nombre_meubles" value="1"> Plus de 5 meubles</label>
+            </div>
+            <div class="form-group" style="margin-top:0.75rem;">
+              <label for="photoUpload">Photos (optionnel)</label>
+              <input type="file" id="photoUpload" name="photos" accept="image/*" multiple>
+            </div>
+          </div>
+
+          <!-- RGPD -->
+          <div class="rgpd-group">
+            <label>
+              <input type="checkbox" id="rgpd" name="rgpd" required>
+              J'accepte que mes données soient traitées pour le traitement de ma demande, conformément à la <a href="confidentialite.html" target="_blank">politique de confidentialité</a>. <span class="req">*</span>
+            </label>
+            <div class="error-msg" id="rgpdError" style="display:none;color:#dc2626;font-size:0.8125rem;margin-top:0.25rem;">Vous devez accepter la politique de confidentialité.</div>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn btn-outline" id="backStep1">Retour</button>
+            <button type="submit" class="btn btn-primary" id="submitRdv">Envoyer ma demande</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ====== CONFIRMATION ====== -->
+  <section class="confirmation" id="confirmSection" style="display:none;">
+    <div class="container">
+      <div class="check-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+      <h2>Demande envoyée !</h2>
+      <p>Merci pour votre demande. Nous vous recontacterons sous 24 h pour confirmer votre rendez‑vous.</p>
+      <a href="index.html" class="btn btn-outline">Retour à l'accueil</a>
+    </div>
+  </section>
+
+  <!-- ====== FOOTER ====== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <p>&copy; 2024 HS Transport. Tous droits réservés.</p>
+      <div class="footer-links">
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="confidentialite.html">Confidentialité</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
