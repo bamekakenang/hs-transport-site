@@ -7,9 +7,10 @@
   'use strict';
 
   // ──────────────────────────────────────────────
-  // CONFIG
+  // CONFIG — Web3Forms
+  // Clé à récupérer sur https://web3forms.com (gratuit)
   // ──────────────────────────────────────────────
-  const FORMSUBMIT_URL = 'https://formsubmit.co/ajax/Tchsteph18@gmail.com';
+const WEB3FORMS_KEY = '5b428b3d-61a8-474c-a91b-323ce318dced';
   const COMPANY_PHONE = '07 52 90 61 37';
 
   // Service labels
@@ -266,10 +267,12 @@
   }
 
   // ──────────────────────────────────────────────
-  // FORMSUBMIT — SEND HELPER
+  // WEB3FORMS — SEND HELPER
   // ──────────────────────────────────────────────
-  function sendToFormSubmit(data) {
-    return fetch(FORMSUBMIT_URL, {
+  function sendForm(data) {
+    data.access_key = WEB3FORMS_KEY;
+    data.from_name = 'HS Transport - Site Web';
+    return fetch('https://api.web3forms.com/submit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify(data)
@@ -320,30 +323,29 @@
       submitBtn.disabled = true;
       submitBtn.textContent = 'Envoi en cours…';
 
-      // Send via FormSubmit
-      sendToFormSubmit({
-        _subject: 'Nouvelle demande RDV – ' + SERVICE_LABELS[service] + ' – ' + nom + ' ' + prenom + ' – ' + dateRdv + ' ' + creneau,
-        _replyto: email,
-        _template: 'table',
-        _autoresponse: 'Bonjour ' + prenom + ', nous avons bien reçu votre demande de ' + (SERVICE_LABELS[service] || service) + '. Nous vous recontacterons sous 24h. — HS Transport (' + COMPANY_PHONE + ')',
-        'Service': SERVICE_LABELS[service] || service,
+      // Send via Web3Forms
+      sendForm({
+        subject: 'Nouvelle demande RDV – ' + SERVICE_LABELS[service] + ' – ' + nom + ' ' + prenom + ' – ' + dateRdv + ' ' + creneau,
+        replyto: email,
+        Service: SERVICE_LABELS[service] || service,
         'Type RDV': TYPE_RDV_LABELS[typeRdv] || typeRdv,
         'Date RDV': dateRdv,
         'Créneau': creneau.replace('-', 'h – ') + 'h',
-        'Nom': nom + ' ' + prenom,
+        Nom: nom + ' ' + prenom,
         'Téléphone': telephone,
         'Email client': email,
         'Ville départ': villeDepart,
         'Ville arrivée': villeArrivee,
         'Date prestation': datePrestation,
-        'Description': description,
-        'Options': options,
+        Description: description,
+        Options: options,
         'Durée location': dureeLocation,
         'Date soumission': submissionDate
-      }).then(function () {
-        showRdvConfirmation();
+      }).then(function (res) {
+        if (res.success) showRdvConfirmation();
+        else { console.error('Web3Forms:', res); showRdvConfirmation(); }
       }).catch(function (err) {
-        console.error('FormSubmit error:', err);
+        console.error('Web3Forms error:', err);
         showRdvConfirmation();
       });
     });
@@ -393,21 +395,20 @@
       submitBtn.disabled = true;
       submitBtn.textContent = 'Envoi en cours…';
 
-      // Send via FormSubmit
-      sendToFormSubmit({
-        _subject: 'Nouveau message – Formulaire de contact – ' + nom,
-        _replyto: email,
-        _template: 'table',
-        _autoresponse: 'Bonjour ' + nom.split(' ')[0] + ', nous avons bien reçu votre message. Nous vous répondrons sous 24h. — HS Transport (' + COMPANY_PHONE + ')',
-        'Nom': nom,
-        'Email': email,
+      // Send via Web3Forms
+      sendForm({
+        subject: 'Nouveau message – Contact – ' + nom,
+        replyto: email,
+        Nom: nom,
+        Email: email,
         'Téléphone': tel,
-        'Message': message,
+        Message: message,
         'Date soumission': submissionDate
-      }).then(function () {
-        showContactConfirmation();
+      }).then(function (res) {
+        if (res.success) showContactConfirmation();
+        else { console.error('Web3Forms:', res); showContactConfirmation(); }
       }).catch(function (err) {
-        console.error('FormSubmit error:', err);
+        console.error('Web3Forms error:', err);
         showContactConfirmation();
       });
     });
