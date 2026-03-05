@@ -17,10 +17,14 @@
     <div class="container">
       <a href="index.html" class="logo" aria-label="Accueil">HS<span>Transport</span></a>
       <nav class="nav" id="mainNav" role="navigation" aria-label="Navigation principale">
-        <a href="index.html">Accueil</a>
-        <a href="index.html#services">Services</a>
-        <a href="reserver.html" class="active">Réserver</a>
-        <a href="contact.html">Contact</a>
+        <a href="index.html" data-i18n="nav.home">Accueil</a>
+        <a href="index.html#services" data-i18n="nav.services">Services</a>
+        <a href="reserver.html" class="active" data-i18n="nav.book">Réserver</a>
+        <a href="contact.html" data-i18n="nav.contact">Contact</a>
+        <button class="lang-toggle" id="langToggle" type="button" aria-label="Switch language">
+          <span class="lang-opt active" data-lang="fr">FR</span>
+          <span class="lang-opt" data-lang="en">EN</span>
+        </button>
       </nav>
       <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mainNav">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
@@ -35,19 +39,19 @@
   <!-- ====== FORMULAIRE RDV ====== -->
   <section class="form-page" id="formSection">
     <div class="container">
-      <h1>Réserver un rendez‑vous</h1>
-      <p>Remplissez le formulaire ci‑dessous. Nous vous confirmons votre créneau sous 24 h.</p>
+      <h1 data-i18n="rdv.title">Réserver un rendez‑vous</h1>
+      <p data-i18n="rdv.intro">Remplissez le formulaire ci‑dessous. Nous vous confirmons votre créneau sous 24 h.</p>
 
       <!-- Wizard indicator -->
       <div class="wizard-steps">
         <div class="wizard-step active" data-step="1">
           <span class="num">1</span>
-          <span>Choix</span>
+          <span data-i18n="rdv.step1">Choix</span>
         </div>
         <div class="wizard-divider"></div>
         <div class="wizard-step" data-step="2">
           <span class="num">2</span>
-          <span>Détails</span>
+          <span data-i18n="rdv.step2">Détails</span>
         </div>
       </div>
 
@@ -62,38 +66,38 @@
         <div class="wizard-panel active" id="step1">
 
           <div class="form-group">
-            <label for="service">Service <span class="req">*</span></label>
+            <label for="service" data-i18n="rdv.lbl.service">Service <span class="req">*</span></label>
             <select id="service" name="service" required>
-              <option value="">— Choisir un service —</option>
-              <option value="demenagement">Déménagement</option>
+              <option value="" data-i18n="rdv.opt.choose_svc">— Choisir un service —</option>
+              <option value="demenagement" data-i18n="rdv.opt.dem">Déménagement</option>
               <option value="transport">Transport</option>
-              <option value="livraison">Livraison</option>
-              <option value="location">Location</option>
-              <option value="montage-demontage">Montage & démontage</option>
+              <option value="livraison" data-i18n="rdv.opt.liv">Livraison</option>
+              <option value="location" data-i18n="rdv.opt.loc">Location</option>
+              <option value="montage-demontage" data-i18n="rdv.opt.mon">Montage & démontage</option>
             </select>
-            <div class="error-msg">Veuillez choisir un service.</div>
+            <div class="error-msg" data-i18n="rdv.err.service">Veuillez choisir un service.</div>
           </div>
 
           <div class="form-group">
-            <label for="typeRdv">Type de rendez‑vous <span class="req">*</span></label>
+            <label for="typeRdv" data-i18n="rdv.lbl.type">Type de rendez‑vous <span class="req">*</span></label>
             <select id="typeRdv" name="typeRdv" required>
-              <option value="">— Choisir —</option>
-              <option value="appel">Appel téléphonique</option>
-              <option value="visite">Visite technique</option>
+              <option value="" data-i18n="rdv.opt.choose">— Choisir —</option>
+              <option value="appel" data-i18n="rdv.opt.appel">Appel téléphonique</option>
+              <option value="visite" data-i18n="rdv.opt.visite">Visite technique</option>
             </select>
-            <div class="error-msg">Veuillez choisir un type de rendez‑vous.</div>
+            <div class="error-msg" data-i18n="rdv.err.type">Veuillez choisir un type de rendez‑vous.</div>
           </div>
 
           <div class="form-row">
             <div class="form-group">
-              <label for="dateRdv">Date souhaitée <span class="req">*</span></label>
+              <label for="dateRdv" data-i18n="rdv.lbl.date">Date souhaitée <span class="req">*</span></label>
               <input type="date" id="dateRdv" name="dateRdv" required>
-              <div class="error-msg">Veuillez indiquer une date.</div>
+              <div class="error-msg" data-i18n="rdv.err.date">Veuillez indiquer une date.</div>
             </div>
             <div class="form-group">
-              <label for="creneau">Créneau <span class="req">*</span></label>
+              <label for="creneau" data-i18n="rdv.lbl.slot">Créneau <span class="req">*</span></label>
               <select id="creneau" name="creneau" required>
-                <option value="">— Choisir —</option>
+                <option value="" data-i18n="rdv.opt.choose">— Choisir —</option>
                 <option value="09-10">09 h – 10 h</option>
                 <option value="10-11">10 h – 11 h</option>
                 <option value="11-12">11 h – 12 h</option>
@@ -101,14 +105,14 @@
                 <option value="15-16">15 h – 16 h</option>
                 <option value="16-17">16 h – 17 h</option>
               </select>
-              <div class="error-msg">Veuillez choisir un créneau.</div>
+              <div class="error-msg" data-i18n="rdv.err.slot">Veuillez choisir un créneau.</div>
             </div>
           </div>
 
-          <p style="font-size:0.8125rem;margin-top:0.5rem;">⏱ Créneau demandé (confirmation sous 24 h)</p>
+          <p style="font-size:0.8125rem;margin-top:0.5rem;" data-i18n="rdv.hint">⏱ Créneau demandé (confirmation sous 24 h)</p>
 
           <div class="form-actions">
-            <button type="button" class="btn btn-primary" id="toStep2">Suivant</button>
+            <button type="button" class="btn btn-primary" id="toStep2" data-i18n="rdv.btn.next">Suivant</button>
           </div>
         </div>
 
@@ -117,51 +121,51 @@
 
           <div class="form-row">
             <div class="form-group">
-              <label for="nom">Nom <span class="req">*</span></label>
+              <label for="nom" data-i18n="rdv.lbl.nom">Nom <span class="req">*</span></label>
               <input type="text" id="nom" name="nom" required autocomplete="family-name">
-              <div class="error-msg">Veuillez indiquer votre nom.</div>
+              <div class="error-msg" data-i18n="rdv.err.nom">Veuillez indiquer votre nom.</div>
             </div>
             <div class="form-group">
-              <label for="prenom">Prénom <span class="req">*</span></label>
+              <label for="prenom" data-i18n="rdv.lbl.prenom">Prénom <span class="req">*</span></label>
               <input type="text" id="prenom" name="prenom" required autocomplete="given-name">
-              <div class="error-msg">Veuillez indiquer votre prénom.</div>
+              <div class="error-msg" data-i18n="rdv.err.prenom">Veuillez indiquer votre prénom.</div>
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group">
-              <label for="telephone">Téléphone <span class="req">*</span></label>
+              <label for="telephone" data-i18n="rdv.lbl.tel">Téléphone <span class="req">*</span></label>
               <input type="tel" id="telephone" name="telephone" required autocomplete="tel" placeholder="06 12 34 56 78">
-              <div class="error-msg">Veuillez indiquer un numéro valide.</div>
+              <div class="error-msg" data-i18n="rdv.err.tel">Veuillez indiquer un numéro valide.</div>
             </div>
             <div class="form-group">
               <label for="email">Email <span class="req">*</span></label>
               <input type="email" id="email" name="email" required autocomplete="email" placeholder="vous@exemple.fr">
-              <div class="error-msg">Veuillez indiquer un email valide.</div>
+              <div class="error-msg" data-i18n="rdv.err.email">Veuillez indiquer un email valide.</div>
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group">
-              <label for="villeDepart">Ville / code postal départ <span class="req">*</span></label>
+              <label for="villeDepart" data-i18n="rdv.lbl.depart">Ville / code postal départ <span class="req">*</span></label>
               <input type="text" id="villeDepart" name="villeDepart" required placeholder="Ex : 75012 Paris">
-              <div class="error-msg">Champ obligatoire.</div>
+              <div class="error-msg" data-i18n="rdv.err.required">Champ obligatoire.</div>
             </div>
             <div class="form-group">
-              <label for="villeArrivee">Ville / code postal arrivée</label>
+              <label for="villeArrivee" data-i18n="rdv.lbl.arrivee">Ville / code postal arrivée</label>
               <input type="text" id="villeArrivee" name="villeArrivee" placeholder="Optionnel selon service">
             </div>
           </div>
 
           <div class="form-group">
-            <label for="datePrestation">Date souhaitée de la prestation</label>
+            <label for="datePrestation" data-i18n="rdv.lbl.dateprest">Date souhaitée de la prestation</label>
             <input type="date" id="datePrestation" name="datePrestation">
           </div>
 
           <div class="form-group">
-            <label for="description">Description du besoin <span class="req">*</span></label>
+            <label for="description" data-i18n="rdv.lbl.desc">Description du besoin <span class="req">*</span></label>
             <textarea id="description" name="description" required placeholder="Décrivez votre besoin : volume, nombre de pièces, accès, étages…"></textarea>
-            <div class="error-msg">Veuillez décrire votre besoin.</div>
+            <div class="error-msg" data-i18n="rdv.err.desc">Veuillez décrire votre besoin.</div>
           </div>
 
           <!-- Options dynamiques selon service -->
@@ -219,8 +223,8 @@
           </div>
 
           <div class="form-actions">
-            <button type="button" class="btn btn-outline" id="backStep1">Retour</button>
-            <button type="submit" class="btn btn-primary" id="submitRdv">Envoyer ma demande</button>
+            <button type="button" class="btn btn-outline" id="backStep1" data-i18n="rdv.btn.back">Retour</button>
+            <button type="submit" class="btn btn-primary" id="submitRdv" data-i18n="rdv.btn.submit">Envoyer ma demande</button>
           </div>
         </div>
       </form>
@@ -235,19 +239,19 @@
           <polyline points="20 6 9 17 4 12"/>
         </svg>
       </div>
-      <h2>Demande envoyée !</h2>
-      <p>Merci pour votre demande. Nous vous recontacterons sous 24 h pour confirmer votre rendez‑vous.</p>
-      <a href="index.html" class="btn btn-outline">Retour à l'accueil</a>
+      <h2 data-i18n="rdv.confirm.title">Demande envoyée !</h2>
+      <p data-i18n="rdv.confirm.text">Merci pour votre demande. Nous vous recontacterons sous 24 h pour confirmer votre rendez‑vous.</p>
+      <a href="index.html" class="btn btn-outline" data-i18n="rdv.confirm.back">Retour à l'accueil</a>
     </div>
   </section>
 
   <!-- ====== FOOTER ====== -->
   <footer class="footer" role="contentinfo">
     <div class="container">
-      <p>&copy; 2024 HS Transport. Tous droits réservés.</p>
+      <p data-i18n="footer.copy">&copy; 2024 HS Transport. Tous droits réservés.</p>
       <div class="footer-links">
-        <a href="mentions-legales.html">Mentions légales</a>
-        <a href="confidentialite.html">Confidentialité</a>
+        <a href="mentions-legales.html" data-i18n="footer.legal">Mentions légales</a>
+        <a href="confidentialite.html" data-i18n="footer.privacy">Confidentialité</a>
       </div>
     </div>
   </footer>

@@ -17,10 +17,14 @@
     <div class="container">
       <a href="index.html" class="logo" aria-label="Accueil">HS<span>Transport</span></a>
       <nav class="nav" id="mainNav" role="navigation" aria-label="Navigation principale">
-        <a href="index.html" class="active">Accueil</a>
-        <a href="#services">Services</a>
-        <a href="reserver.html">Réserver</a>
-        <a href="contact.html">Contact</a>
+        <a href="index.html" class="active" data-i18n="nav.home">Accueil</a>
+        <a href="#services" data-i18n="nav.services">Services</a>
+        <a href="reserver.html" data-i18n="nav.book">Réserver</a>
+        <a href="contact.html" data-i18n="nav.contact">Contact</a>
+        <button class="lang-toggle" id="langToggle" type="button" aria-label="Switch language">
+          <span class="lang-opt active" data-lang="fr">FR</span>
+          <span class="lang-opt" data-lang="en">EN</span>
+        </button>
       </nav>
       <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mainNav">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
@@ -35,12 +39,12 @@
   <!-- ====== HERO ====== -->
   <section class="hero">
     <div class="container">
-      <div class="hero-badge"><span class="dot"></span> Disponible partout en Île‑de‑France</div>
-      <h1>Déménagement &amp; transport<br>rapide en Île‑de‑France</h1>
-      <p>Déménagement, transport, livraison, location, montage &amp; démontage — réponse garantie sous 24 h.</p>
+      <div class="hero-badge"><span class="dot"></span> <span data-i18n="hero.badge">Disponible partout en Île‑de‑France</span></div>
+      <h1 data-i18n="hero.title">Déménagement &amp; transport<br>rapide en Île‑de‑France</h1>
+      <p data-i18n="hero.desc">Déménagement, transport, livraison, location, montage &amp; démontage — réponse garantie sous 24 h.</p>
       <div class="hero-btns">
-        <a href="reserver.html" class="btn btn-primary">Réserver un rendez‑vous</a>
-        <a href="contact.html" class="btn btn-ghost">Nous contacter</a>
+        <a href="reserver.html" class="btn btn-primary" data-i18n="hero.cta">Réserver un rendez‑vous</a>
+        <a href="contact.html" class="btn btn-ghost" data-i18n="hero.cta2">Nous contacter</a>
       </div>
     </div>
   </section>
@@ -49,45 +53,45 @@
   <section id="services">
     <div class="container">
       <div class="section-header">
-        <span class="section-label">Nos services</span>
-        <h2>Tout ce dont vous avez besoin</h2>
-        <p>Des prestations complètes pour vos déménagements, transports et livraisons.</p>
+        <span class="section-label" data-i18n="svc.label">Nos services</span>
+        <h2 data-i18n="svc.title">Tout ce dont vous avez besoin</h2>
+        <p data-i18n="svc.desc">Des prestations complètes pour vos déménagements, transports et livraisons.</p>
       </div>
       <div class="services-grid">
 
         <article class="service-card">
           <div class="icon" aria-hidden="true">📦</div>
-          <h3>Déménagement</h3>
-          <p>Prise en charge complète de votre déménagement, du démontage à l'installation.</p>
-          <a href="reserver.html?service=demenagement" class="btn btn-outline btn-sm">Demander un RDV</a>
+          <h3 data-i18n="svc.dem.t">Déménagement</h3>
+          <p data-i18n="svc.dem.d">Prise en charge complète de votre déménagement, du démontage à l'installation.</p>
+          <a href="reserver.html?service=demenagement" class="btn btn-outline btn-sm" data-i18n="svc.cta">Demander un RDV</a>
         </article>
 
         <article class="service-card">
           <div class="icon" aria-hidden="true">🚚</div>
-          <h3>Transport</h3>
-          <p>Transport de marchandises, objets volumineux ou fragiles en toute sécurité.</p>
-          <a href="reserver.html?service=transport" class="btn btn-outline btn-sm">Demander un RDV</a>
+          <h3 data-i18n="svc.tra.t">Transport</h3>
+          <p data-i18n="svc.tra.d">Transport de marchandises, objets volumineux ou fragiles en toute sécurité.</p>
+          <a href="reserver.html?service=transport" class="btn btn-outline btn-sm" data-i18n="svc.cta">Demander un RDV</a>
         </article>
 
         <article class="service-card">
           <div class="icon" aria-hidden="true">🏷️</div>
-          <h3>Livraison</h3>
-          <p>Livraison rapide de vos achats, colis ou équipements en Île‑de‑France.</p>
-          <a href="reserver.html?service=livraison" class="btn btn-outline btn-sm">Demander un RDV</a>
+          <h3 data-i18n="svc.liv.t">Livraison</h3>
+          <p data-i18n="svc.liv.d">Livraison rapide de vos achats, colis ou équipements en Île‑de‑France.</p>
+          <a href="reserver.html?service=livraison" class="btn btn-outline btn-sm" data-i18n="svc.cta">Demander un RDV</a>
         </article>
 
         <article class="service-card">
           <div class="icon" aria-hidden="true">🔑</div>
-          <h3>Location</h3>
-          <p>Location de camion, monte‑meuble ou outillage adapté à votre projet.</p>
-          <a href="reserver.html?service=location" class="btn btn-outline btn-sm">Demander un RDV</a>
+          <h3 data-i18n="svc.loc.t">Location</h3>
+          <p data-i18n="svc.loc.d">Location de camion, monte‑meuble ou outillage adapté à votre projet.</p>
+          <a href="reserver.html?service=location" class="btn btn-outline btn-sm" data-i18n="svc.cta">Demander un RDV</a>
         </article>
 
         <article class="service-card">
           <div class="icon" aria-hidden="true">🔧</div>
-          <h3>Montage &amp; démontage</h3>
-          <p>Montage et démontage de meubles par des professionnels expérimentés.</p>
-          <a href="reserver.html?service=montage-demontage" class="btn btn-outline btn-sm">Demander un RDV</a>
+          <h3 data-i18n="svc.mon.t">Montage &amp; démontage</h3>
+          <p data-i18n="svc.mon.d">Montage et démontage de meubles par des professionnels expérimentés.</p>
+          <a href="reserver.html?service=montage-demontage" class="btn btn-outline btn-sm" data-i18n="svc.cta">Demander un RDV</a>
         </article>
 
       </div>
@@ -98,9 +102,9 @@
   <section class="zone">
     <div class="container">
       <div class="section-header">
-        <span class="section-label">Couverture</span>
-        <h2>Zone d’intervention</h2>
-        <p>Nous intervenons partout en Île‑de‑France, dans tous les départements.</p>
+        <span class="section-label" data-i18n="zone.label">Couverture</span>
+        <h2 data-i18n="zone.title">Zone d'intervention</h2>
+        <p data-i18n="zone.desc">Nous intervenons partout en Île‑de‑France, dans tous les départements.</p>
       </div>
       <div class="zone-depts">
         <span>75 — Paris</span>
@@ -119,25 +123,25 @@
   <section>
     <div class="container">
       <div class="section-header">
-        <span class="section-label">Processus</span>
-        <h2>Comment ça marche</h2>
-        <p>Trois étapes simples pour organiser votre prestation.</p>
+        <span class="section-label" data-i18n="steps.label">Processus</span>
+        <h2 data-i18n="steps.title">Comment ça marche</h2>
+        <p data-i18n="steps.desc">Trois étapes simples pour organiser votre prestation.</p>
       </div>
       <div class="steps-grid">
         <div class="step">
           <div class="step-num">1</div>
-          <h3>Choisissez votre service &amp; créneau</h3>
-          <p>Sélectionnez le service souhaité et un créneau de rendez‑vous.</p>
+          <h3 data-i18n="steps.1.t">Choisissez votre service &amp; créneau</h3>
+          <p data-i18n="steps.1.d">Sélectionnez le service souhaité et un créneau de rendez‑vous.</p>
         </div>
         <div class="step">
           <div class="step-num">2</div>
-          <h3>Décrivez votre besoin</h3>
-          <p>Précisez les adresses, le volume, les options et toute information utile.</p>
+          <h3 data-i18n="steps.2.t">Décrivez votre besoin</h3>
+          <p data-i18n="steps.2.d">Précisez les adresses, le volume, les options et toute information utile.</p>
         </div>
         <div class="step">
           <div class="step-num">3</div>
-          <h3>Confirmation sous 24 h</h3>
-          <p>Nous vous recontactons pour confirmer votre rendez‑vous.</p>
+          <h3 data-i18n="steps.3.t">Confirmation sous 24 h</h3>
+          <p data-i18n="steps.3.d">Nous vous recontactons pour confirmer votre rendez‑vous.</p>
         </div>
       </div>
     </div>
@@ -148,37 +152,37 @@
     <div class="container">
       <div class="section-header">
         <span class="section-label">FAQ</span>
-        <h2>Questions fréquentes</h2>
+        <h2 data-i18n="faq.title">Questions fréquentes</h2>
       </div>
       <div class="faq-list">
         <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">Quels sont les délais pour obtenir un rendez‑vous ?</button>
+          <button class="faq-question" aria-expanded="false" data-i18n="faq.q1">Quels sont les délais pour obtenir un rendez‑vous ?</button>
           <div class="faq-answer" role="region">
-            <p>Nous vous répondons sous 24 heures après réception de votre demande, du lundi au samedi.</p>
+            <p data-i18n="faq.a1">Nous vous répondons sous 24 heures après réception de votre demande, du lundi au samedi.</p>
           </div>
         </div>
         <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">Intervenez‑vous en dehors de l'Île‑de‑France ?</button>
+          <button class="faq-question" aria-expanded="false" data-i18n="faq.q2">Intervenez‑vous en dehors de l'Île‑de‑France ?</button>
           <div class="faq-answer" role="region">
-            <p>Nous couvrons principalement l'Île‑de‑France (75, 77, 78, 91, 92, 93, 94, 95). Pour les trajets plus lointains, contactez‑nous pour étudier la faisabilité.</p>
+            <p data-i18n="faq.a2">Nous couvrons principalement l'Île‑de‑France (75, 77, 78, 91, 92, 93, 94, 95). Pour les trajets plus lointains, contactez‑nous pour étudier la faisabilité.</p>
           </div>
         </div>
         <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">Le créneau demandé est‑il garanti ?</button>
+          <button class="faq-question" aria-expanded="false" data-i18n="faq.q3">Le créneau demandé est‑il garanti ?</button>
           <div class="faq-answer" role="region">
-            <p>Le créneau est une demande, pas une confirmation automatique. Nous vous confirmons la date et l'heure sous 24 h par téléphone ou email.</p>
+            <p data-i18n="faq.a3">Le créneau est une demande, pas une confirmation automatique. Nous vous confirmons la date et l'heure sous 24 h par téléphone ou email.</p>
           </div>
         </div>
         <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">Comment est calculé le devis ?</button>
+          <button class="faq-question" aria-expanded="false" data-i18n="faq.q4">Comment est calculé le devis ?</button>
           <div class="faq-answer" role="region">
-            <p>Le devis dépend du type de prestation, du volume, de la distance et des options choisies. Nous établissons un devis personnalisé après le rendez‑vous.</p>
+            <p data-i18n="faq.a4">Le devis dépend du type de prestation, du volume, de la distance et des options choisies. Nous établissons un devis personnalisé après le rendez‑vous.</p>
           </div>
         </div>
         <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">Quels moyens de paiement acceptez‑vous ?</button>
+          <button class="faq-question" aria-expanded="false" data-i18n="faq.q5">Quels moyens de paiement acceptez‑vous ?</button>
           <div class="faq-answer" role="region">
-            <p>Le paiement s'effectue après la prestation, par virement, chèque ou espèces. Aucun paiement en ligne n'est demandé.</p>
+            <p data-i18n="faq.a5">Le paiement s'effectue après la prestation, par virement, chèque ou espèces. Aucun paiement en ligne n'est demandé.</p>
           </div>
         </div>
       </div>
@@ -188,10 +192,10 @@
   <!-- ====== FOOTER ====== -->
   <footer class="footer" role="contentinfo">
     <div class="container">
-      <p>&copy; 2024 HS Transport. Tous droits réservés.</p>
+      <p data-i18n="footer.copy">&copy; 2024 HS Transport. Tous droits réservés.</p>
       <div class="footer-links">
-        <a href="mentions-legales.html">Mentions légales</a>
-        <a href="confidentialite.html">Confidentialité</a>
+        <a href="mentions-legales.html" data-i18n="footer.legal">Mentions légales</a>
+        <a href="confidentialite.html" data-i18n="footer.privacy">Confidentialité</a>
       </div>
     </div>
   </footer>

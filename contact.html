@@ -17,10 +17,14 @@
     <div class="container">
       <a href="index.html" class="logo" aria-label="Accueil">HS<span>Transport</span></a>
       <nav class="nav" id="mainNav" role="navigation" aria-label="Navigation principale">
-        <a href="index.html">Accueil</a>
-        <a href="index.html#services">Services</a>
-        <a href="reserver.html">Réserver</a>
-        <a href="contact.html" class="active">Contact</a>
+        <a href="index.html" data-i18n="nav.home">Accueil</a>
+        <a href="index.html#services" data-i18n="nav.services">Services</a>
+        <a href="reserver.html" data-i18n="nav.book">Réserver</a>
+        <a href="contact.html" class="active" data-i18n="nav.contact">Contact</a>
+        <button class="lang-toggle" id="langToggle" type="button" aria-label="Switch language">
+          <span class="lang-opt active" data-lang="fr">FR</span>
+          <span class="lang-opt" data-lang="en">EN</span>
+        </button>
       </nav>
       <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mainNav">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
@@ -35,8 +39,8 @@
   <!-- ====== CONTACT ====== -->
   <section class="form-page" id="contactFormSection">
     <div class="container" style="max-width:900px;">
-      <h1>Nous contacter</h1>
-      <p>Une question, un projet ? Envoyez‑nous un message et nous vous répondons sous 24 h.</p>
+      <h1 data-i18n="contact.title">Nous contacter</h1>
+      <p data-i18n="contact.intro">Une question, un projet ? Envoyez‑nous un message et nous vous répondons sous 24 h.</p>
 
       <div class="contact-grid">
 
@@ -50,27 +54,27 @@
             </div>
 
             <div class="form-group">
-              <label for="contactNom">Nom et prénom <span class="req">*</span></label>
+              <label for="contactNom" data-i18n="contact.lbl.name">Nom et prénom <span class="req">*</span></label>
               <input type="text" id="contactNom" name="contactNom" required autocomplete="name">
-              <div class="error-msg">Veuillez indiquer votre nom.</div>
+              <div class="error-msg" data-i18n="rdv.err.nom">Veuillez indiquer votre nom.</div>
             </div>
 
             <div class="form-group">
               <label for="contactEmail">Email <span class="req">*</span></label>
               <input type="email" id="contactEmail" name="contactEmail" required autocomplete="email" placeholder="vous@exemple.fr">
-              <div class="error-msg">Veuillez indiquer un email valide.</div>
+              <div class="error-msg" data-i18n="rdv.err.email">Veuillez indiquer un email valide.</div>
             </div>
 
             <div class="form-group">
-              <label for="contactTel">Téléphone <span class="req">*</span></label>
+              <label for="contactTel" data-i18n="rdv.lbl.tel">Téléphone <span class="req">*</span></label>
               <input type="tel" id="contactTel" name="contactTel" required autocomplete="tel" placeholder="06 12 34 56 78">
-              <div class="error-msg">Veuillez indiquer un numéro valide.</div>
+              <div class="error-msg" data-i18n="rdv.err.tel">Veuillez indiquer un numéro valide.</div>
             </div>
 
             <div class="form-group">
-              <label for="contactMessage">Message <span class="req">*</span></label>
+              <label for="contactMessage" data-i18n="contact.lbl.msg">Message <span class="req">*</span></label>
               <textarea id="contactMessage" name="contactMessage" required placeholder="Décrivez votre demande…"></textarea>
-              <div class="error-msg">Veuillez écrire un message.</div>
+              <div class="error-msg" data-i18n="contact.err.msg">Veuillez écrire un message.</div>
             </div>
 
             <!-- RGPD -->
@@ -82,20 +86,20 @@
               <div class="error-msg" id="contactRgpdError" style="display:none;color:#dc2626;font-size:0.8125rem;margin-top:0.25rem;">Vous devez accepter la politique de confidentialité.</div>
             </div>
 
-            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Envoyer le message</button>
+            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;" data-i18n="contact.btn.send">Envoyer le message</button>
           </form>
         </div>
 
         <!-- Infos -->
         <div class="contact-info">
-          <h3>Coordonnées</h3>
+          <h3 data-i18n="contact.info.title">Coordonnées</h3>
 
           <div class="contact-info-item">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
             </svg>
             <div>
-              <strong>Téléphone</strong>
+              <strong data-i18n="contact.info.phone">Téléphone</strong>
               <p>07 52 90 61 37</p>
             </div>
           </div>
@@ -117,13 +121,13 @@
               <polyline points="12 6 12 12 16 14"/>
             </svg>
             <div>
-              <strong>Horaires</strong>
-              <p>Lundi – Vendredi : 8 h – 18 h<br>Samedi : 9 h – 16 h</p>
+              <strong data-i18n="contact.info.hours">Horaires</strong>
+              <p data-i18n="contact.info.hours_detail">Lundi – Vendredi : 8 h – 18 h<br>Samedi : 9 h – 16 h</p>
             </div>
           </div>
 
           <div class="contact-badge">
-            <p>📍 Disponible partout en Île‑de‑France (75, 77, 78, 91, 92, 93, 94, 95)</p>
+            <p data-i18n="contact.info.badge">📍 Disponible partout en Île‑de‑France (75, 77, 78, 91, 92, 93, 94, 95)</p>
           </div>
         </div>
 
@@ -139,19 +143,19 @@
           <polyline points="20 6 9 17 4 12"/>
         </svg>
       </div>
-      <h2>Message envoyé !</h2>
-      <p>Merci pour votre message. Nous vous répondons sous 24 h.</p>
-      <a href="index.html" class="btn btn-outline">Retour à l'accueil</a>
+      <h2 data-i18n="contact.confirm.title">Message envoyé !</h2>
+      <p data-i18n="contact.confirm.text">Merci pour votre message. Nous vous répondons sous 24 h.</p>
+      <a href="index.html" class="btn btn-outline" data-i18n="rdv.confirm.back">Retour à l'accueil</a>
     </div>
   </section>
 
   <!-- ====== FOOTER ====== -->
   <footer class="footer" role="contentinfo">
     <div class="container">
-      <p>&copy; 2024 HS Transport. Tous droits réservés.</p>
+      <p data-i18n="footer.copy">&copy; 2024 HS Transport. Tous droits réservés.</p>
       <div class="footer-links">
-        <a href="mentions-legales.html">Mentions légales</a>
-        <a href="confidentialite.html">Confidentialité</a>
+        <a href="mentions-legales.html" data-i18n="footer.legal">Mentions légales</a>
+        <a href="confidentialite.html" data-i18n="footer.privacy">Confidentialité</a>
       </div>
     </div>
   </footer>

@@ -7,6 +7,178 @@
   'use strict';
 
   // ──────────────────────────────────────────────
+  // i18n — TRANSLATION SYSTEM
+  // ──────────────────────────────────────────────
+  var currentLang = localStorage.getItem('hs_lang') || 'fr';
+  var translations = {
+    en: {
+      // Nav
+      'nav.home': 'Home',
+      'nav.services': 'Services',
+      'nav.book': 'Book',
+      'nav.contact': 'Contact',
+
+      // Hero
+      'hero.badge': 'Available throughout Île‑de‑France',
+      'hero.title': 'Moving &amp; transport<br>fast in Île‑de‑France',
+      'hero.desc': 'Moving, transport, delivery, rental, assembly &amp; disassembly — guaranteed response within 24 h.',
+      'hero.cta': 'Book an appointment',
+      'hero.cta2': 'Contact us',
+
+      // Services
+      'svc.label': 'Our services',
+      'svc.title': 'Everything you need',
+      'svc.desc': 'Complete services for your moves, transport and deliveries.',
+      'svc.cta': 'Request an appointment',
+      'svc.dem.t': 'Moving',
+      'svc.dem.d': 'Complete management of your move, from disassembly to installation.',
+      'svc.tra.t': 'Transport',
+      'svc.tra.d': 'Transport of goods, bulky or fragile items in complete safety.',
+      'svc.liv.t': 'Delivery',
+      'svc.liv.d': 'Fast delivery of your purchases, parcels or equipment in Île‑de‑France.',
+      'svc.loc.t': 'Rental',
+      'svc.loc.d': 'Truck, furniture lift or tool rental adapted to your project.',
+      'svc.mon.t': 'Assembly &amp; disassembly',
+      'svc.mon.d': 'Furniture assembly and disassembly by experienced professionals.',
+
+      // Zone
+      'zone.label': 'Coverage',
+      'zone.title': 'Service area',
+      'zone.desc': 'We operate throughout Île‑de‑France, in all departments.',
+
+      // Steps
+      'steps.label': 'Process',
+      'steps.title': 'How it works',
+      'steps.desc': 'Three simple steps to organise your service.',
+      'steps.1.t': 'Choose your service &amp; time slot',
+      'steps.1.d': 'Select the desired service and an appointment slot.',
+      'steps.2.t': 'Describe your needs',
+      'steps.2.d': 'Specify addresses, volume, options and any useful information.',
+      'steps.3.t': 'Confirmation within 24 h',
+      'steps.3.d': 'We will get back to you to confirm your appointment.',
+
+      // FAQ
+      'faq.title': 'Frequently asked questions',
+      'faq.q1': 'What are the lead times for an appointment?',
+      'faq.a1': 'We respond within 24 hours of receiving your request, Monday to Saturday.',
+      'faq.q2': 'Do you operate outside Île‑de‑France?',
+      'faq.a2': 'We mainly cover Île‑de‑France (75, 77, 78, 91, 92, 93, 94, 95). For longer trips, contact us to discuss feasibility.',
+      'faq.q3': 'Is the requested time slot guaranteed?',
+      'faq.a3': 'The time slot is a request, not an automatic confirmation. We confirm the date and time within 24 h by phone or email.',
+      'faq.q4': 'How is the quote calculated?',
+      'faq.a4': 'The quote depends on the type of service, volume, distance and options chosen. We provide a personalised quote after the appointment.',
+      'faq.q5': 'What payment methods do you accept?',
+      'faq.a5': 'Payment is made after the service, by bank transfer, cheque or cash. No online payment is required.',
+
+      // Footer
+      'footer.copy': '&copy; 2024 HS Transport. All rights reserved.',
+      'footer.legal': 'Legal notice',
+      'footer.privacy': 'Privacy',
+
+      // Booking page
+      'rdv.title': 'Book an appointment',
+      'rdv.intro': 'Fill out the form below. We will confirm your time slot within 24 h.',
+      'rdv.step1': 'Choice',
+      'rdv.step2': 'Details',
+      'rdv.lbl.service': 'Service <span class="req">*</span>',
+      'rdv.opt.choose_svc': '— Choose a service —',
+      'rdv.opt.dem': 'Moving',
+      'rdv.opt.liv': 'Delivery',
+      'rdv.opt.loc': 'Rental',
+      'rdv.opt.mon': 'Assembly & disassembly',
+      'rdv.err.service': 'Please choose a service.',
+      'rdv.lbl.type': 'Appointment type <span class="req">*</span>',
+      'rdv.opt.choose': '— Choose —',
+      'rdv.opt.appel': 'Phone call',
+      'rdv.opt.visite': 'Technical visit',
+      'rdv.err.type': 'Please choose an appointment type.',
+      'rdv.lbl.date': 'Preferred date <span class="req">*</span>',
+      'rdv.err.date': 'Please provide a date.',
+      'rdv.lbl.slot': 'Time slot <span class="req">*</span>',
+      'rdv.err.slot': 'Please choose a time slot.',
+      'rdv.hint': '⏱ Requested time slot (confirmation within 24 h)',
+      'rdv.btn.next': 'Next',
+      'rdv.lbl.nom': 'Last name <span class="req">*</span>',
+      'rdv.err.nom': 'Please provide your name.',
+      'rdv.lbl.prenom': 'First name <span class="req">*</span>',
+      'rdv.err.prenom': 'Please provide your first name.',
+      'rdv.lbl.tel': 'Phone <span class="req">*</span>',
+      'rdv.err.tel': 'Please provide a valid number.',
+      'rdv.err.email': 'Please provide a valid email.',
+      'rdv.lbl.depart': 'City / postal code – departure <span class="req">*</span>',
+      'rdv.err.required': 'Required field.',
+      'rdv.lbl.arrivee': 'City / postal code – arrival',
+      'rdv.lbl.dateprest': 'Preferred service date',
+      'rdv.lbl.desc': 'Description of your needs <span class="req">*</span>',
+      'rdv.err.desc': 'Please describe your needs.',
+      'rdv.btn.back': 'Back',
+      'rdv.btn.submit': 'Send my request',
+      'rdv.confirm.title': 'Request sent!',
+      'rdv.confirm.text': 'Thank you for your request. We will contact you within 24 h to confirm your appointment.',
+      'rdv.confirm.back': 'Back to home',
+
+      // Contact page
+      'contact.title': 'Contact us',
+      'contact.intro': 'A question, a project? Send us a message and we will reply within 24 h.',
+      'contact.lbl.name': 'Full name <span class="req">*</span>',
+      'contact.lbl.msg': 'Message <span class="req">*</span>',
+      'contact.err.msg': 'Please write a message.',
+      'contact.btn.send': 'Send message',
+      'contact.info.title': 'Contact information',
+      'contact.info.phone': 'Phone',
+      'contact.info.hours': 'Hours',
+      'contact.info.hours_detail': 'Monday – Friday: 8 am – 6 pm<br>Saturday: 9 am – 4 pm',
+      'contact.info.badge': '📍 Available throughout Île‑de‑France (75, 77, 78, 91, 92, 93, 94, 95)',
+      'contact.confirm.title': 'Message sent!',
+      'contact.confirm.text': 'Thank you for your message. We will reply within 24 h.',
+
+      // Legal pages
+      'legal.title': 'Legal notice',
+      'privacy.title': 'Privacy policy'
+    }
+  };
+
+  function applyLanguage(lang) {
+    var elems = document.querySelectorAll('[data-i18n]');
+    elems.forEach(function (el) {
+      var key = el.getAttribute('data-i18n');
+      if (!el.hasAttribute('data-i18n-fr')) {
+        el.setAttribute('data-i18n-fr', el.innerHTML);
+      }
+      if (lang === 'en' && translations.en[key]) {
+        el.innerHTML = translations.en[key];
+      } else if (lang === 'fr') {
+        var original = el.getAttribute('data-i18n-fr');
+        if (original !== null) el.innerHTML = original;
+      }
+    });
+    document.documentElement.lang = lang;
+    currentLang = lang;
+    localStorage.setItem('hs_lang', lang);
+
+    // Update toggle UI
+    document.querySelectorAll('.lang-opt').forEach(function (opt) {
+      opt.classList.toggle('active', opt.getAttribute('data-lang') === lang);
+    });
+  }
+
+  // Language toggle click
+  document.addEventListener('click', function (e) {
+    var opt = e.target.closest('.lang-opt');
+    if (!opt) return;
+    var lang = opt.getAttribute('data-lang');
+    if (lang && lang !== currentLang) {
+      applyLanguage(lang);
+    }
+  });
+
+  // Apply saved language on load
+  if (currentLang === 'en') {
+    // Defer slightly so DOM is fully ready
+    setTimeout(function () { applyLanguage('en'); }, 0);
+  }
+
+  // ──────────────────────────────────────────────
   // CONFIG — Web3Forms
   // Clé à récupérer sur https://web3forms.com (gratuit)
   // ──────────────────────────────────────────────

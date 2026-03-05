@@ -16,10 +16,14 @@
     <div class="container">
       <a href="index.html" class="logo" aria-label="Accueil">HS<span>Transport</span></a>
       <nav class="nav" id="mainNav" role="navigation" aria-label="Navigation principale">
-        <a href="index.html">Accueil</a>
-        <a href="index.html#services">Services</a>
-        <a href="reserver.html">Réserver</a>
-        <a href="contact.html">Contact</a>
+        <a href="index.html" data-i18n="nav.home">Accueil</a>
+        <a href="index.html#services" data-i18n="nav.services">Services</a>
+        <a href="reserver.html" data-i18n="nav.book">Réserver</a>
+        <a href="contact.html" data-i18n="nav.contact">Contact</a>
+        <button class="lang-toggle" id="langToggle" type="button" aria-label="Switch language">
+          <span class="lang-opt active" data-lang="fr">FR</span>
+          <span class="lang-opt" data-lang="en">EN</span>
+        </button>
       </nav>
       <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mainNav">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
@@ -33,7 +37,7 @@
 
   <section class="legal-page">
     <div class="container">
-      <h1>Mentions légales</h1>
+      <h1 data-i18n="legal.title">Mentions légales</h1>
 
       <h2>Éditeur du site</h2>
       <p><strong>Raison sociale :</strong> HS Transport</p>
@@ -64,10 +68,10 @@
 
   <footer class="footer" role="contentinfo">
     <div class="container">
-      <p>&copy; 2024 HS Transport. Tous droits réservés.</p>
+      <p data-i18n="footer.copy">&copy; 2024 HS Transport. Tous droits réservés.</p>
       <div class="footer-links">
-        <a href="mentions-legales.html">Mentions légales</a>
-        <a href="confidentialite.html">Confidentialité</a>
+        <a href="mentions-legales.html" data-i18n="footer.legal">Mentions légales</a>
+        <a href="confidentialite.html" data-i18n="footer.privacy">Confidentialité</a>
       </div>
     </div>
   </footer>
