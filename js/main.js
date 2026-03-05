@@ -1,21 +1,15 @@
 /* ==============================================
    HS Transport — main.js
-   Navigation, FAQ, Wizard, Validation, EmailJS
+   Navigation, FAQ, Wizard, Validation, FormSubmit
    ============================================== */
 
 (function () {
   'use strict';
 
   // ──────────────────────────────────────────────
-  // CONFIG — À REMPLACER avec vos identifiants EmailJS
-  // Créez un compte gratuit sur https://www.emailjs.com
+  // CONFIG
   // ──────────────────────────────────────────────
-  const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';     // Clé publique EmailJS
-  const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';     // ID du service email
-  const EMAILJS_TEMPLATE_RDV = 'YOUR_TEMPLATE_RDV'; // Template pour RDV (vers entreprise)
-  const EMAILJS_TEMPLATE_CONTACT = 'YOUR_TEMPLATE_CONTACT'; // Template pour contact
-  const EMAILJS_TEMPLATE_CONFIRM = 'YOUR_TEMPLATE_CONFIRM'; // Template confirmation client
-  const COMPANY_EMAIL = 'Tchsteph18@gmail.com';
+  const FORMSUBMIT_URL = 'https://formsubmit.co/ajax/Tchsteph18@gmail.com';
   const COMPANY_PHONE = '07 52 90 61 37';
 
   // Service labels
@@ -31,13 +25,6 @@
     'appel': 'Appel téléphonique',
     'visite': 'Visite technique'
   };
-
-  // ──────────────────────────────────────────────
-  // INIT EmailJS
-  // ──────────────────────────────────────────────
-  if (typeof emailjs !== 'undefined') {
-    emailjs.init(EMAILJS_PUBLIC_KEY);
-  }
 
   // ──────────────────────────────────────────────
   // HEADER SCROLL EFFECT
@@ -279,6 +266,17 @@
   }
 
   // ──────────────────────────────────────────────
+  // FORMSUBMIT — SEND HELPER
+  // ──────────────────────────────────────────────
+  function sendToFormSubmit(data) {
+    return fetch(FORMSUBMIT_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(data)
+    }).then(function (res) { return res.json(); });
+  }
+
+  // ──────────────────────────────────────────────
   // RDV FORM SUBMIT
   // ──────────────────────────────────────────────
   if (rdvForm) {
@@ -322,58 +320,32 @@
       submitBtn.disabled = true;
       submitBtn.textContent = 'Envoi en cours…';
 
-      // Email to company
-      const companyParams = {
-        to_email: COMPANY_EMAIL,
-        reply_to: email,
-        subject: 'Nouvelle demande RDV – ' + SERVICE_LABELS[service] + ' – ' + nom + ' ' + prenom + ' – ' + dateRdv + ' ' + creneau,
-        service: SERVICE_LABELS[service] || service,
-        type_rdv: TYPE_RDV_LABELS[typeRdv] || typeRdv,
-        date_rdv: dateRdv,
-        creneau: creneau.replace('-', ' h – ') + ' h',
-        nom: nom + ' ' + prenom,
-        telephone: telephone,
-        email_client: email,
-        ville_depart: villeDepart,
-        ville_arrivee: villeArrivee,
-        date_prestation: datePrestation,
-        description: description,
-        options: options,
-        duree_location: dureeLocation,
-        date_soumission: submissionDate
-      };
-
-      // Email confirmation to client
-      const clientParams = {
-        to_email: email,
-        to_name: prenom,
-        subject: 'Nous avons bien reçu votre demande',
-        service: SERVICE_LABELS[service] || service,
-        type_rdv: TYPE_RDV_LABELS[typeRdv] || typeRdv,
-        date_rdv: dateRdv,
-        creneau: creneau.replace('-', ' h – ') + ' h',
-        company_phone: COMPANY_PHONE
-      };
-
-      // Send emails via EmailJS
-      if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
-        Promise.all([
-          emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_RDV, companyParams),
-          emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_CONFIRM, clientParams)
-        ]).then(function () {
-          showRdvConfirmation();
-        }).catch(function (err) {
-          console.error('EmailJS error:', err);
-          // Show confirmation anyway (data was collected)
-          showRdvConfirmation();
-        });
-      } else {
-        // EmailJS not configured — log data and show confirmation
-        console.log('=== DEMANDE RDV (EmailJS non configuré) ===');
-        console.log('Email entreprise:', JSON.stringify(companyParams, null, 2));
-        console.log('Email client:', JSON.stringify(clientParams, null, 2));
+      // Send via FormSubmit
+      sendToFormSubmit({
+        _subject: 'Nouvelle demande RDV – ' + SERVICE_LABELS[service] + ' – ' + nom + ' ' + prenom + ' – ' + dateRdv + ' ' + creneau,
+        _replyto: email,
+        _template: 'table',
+        _autoresponse: 'Bonjour ' + prenom + ', nous avons bien reçu votre demande de ' + (SERVICE_LABELS[service] || service) + '. Nous vous recontacterons sous 24h. — HS Transport (' + COMPANY_PHONE + ')',
+        'Service': SERVICE_LABELS[service] || service,
+        'Type RDV': TYPE_RDV_LABELS[typeRdv] || typeRdv,
+        'Date RDV': dateRdv,
+        'Créneau': creneau.replace('-', 'h – ') + 'h',
+        'Nom': nom + ' ' + prenom,
+        'Téléphone': telephone,
+        'Email client': email,
+        'Ville départ': villeDepart,
+        'Ville arrivée': villeArrivee,
+        'Date prestation': datePrestation,
+        'Description': description,
+        'Options': options,
+        'Durée location': dureeLocation,
+        'Date soumission': submissionDate
+      }).then(function () {
         showRdvConfirmation();
-      }
+      }).catch(function (err) {
+        console.error('FormSubmit error:', err);
+        showRdvConfirmation();
+      });
     });
   }
 
@@ -421,42 +393,23 @@
       submitBtn.disabled = true;
       submitBtn.textContent = 'Envoi en cours…';
 
-      // Email to company
-      const companyParams = {
-        to_email: COMPANY_EMAIL,
-        reply_to: email,
-        subject: 'Nouveau message – Formulaire de contact – ' + nom,
-        nom: nom,
-        email_client: email,
-        telephone: tel,
-        message: message,
-        date_soumission: submissionDate
-      };
-
-      // Email confirmation to client
-      const clientParams = {
-        to_email: email,
-        to_name: nom.split(' ')[0],
-        subject: 'Nous avons bien reçu votre message',
-        company_phone: COMPANY_PHONE
-      };
-
-      if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
-        Promise.all([
-          emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_CONTACT, companyParams),
-          emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_CONFIRM, clientParams)
-        ]).then(function () {
-          showContactConfirmation();
-        }).catch(function (err) {
-          console.error('EmailJS error:', err);
-          showContactConfirmation();
-        });
-      } else {
-        console.log('=== MESSAGE CONTACT (EmailJS non configuré) ===');
-        console.log('Email entreprise:', JSON.stringify(companyParams, null, 2));
-        console.log('Email client:', JSON.stringify(clientParams, null, 2));
+      // Send via FormSubmit
+      sendToFormSubmit({
+        _subject: 'Nouveau message – Formulaire de contact – ' + nom,
+        _replyto: email,
+        _template: 'table',
+        _autoresponse: 'Bonjour ' + nom.split(' ')[0] + ', nous avons bien reçu votre message. Nous vous répondrons sous 24h. — HS Transport (' + COMPANY_PHONE + ')',
+        'Nom': nom,
+        'Email': email,
+        'Téléphone': tel,
+        'Message': message,
+        'Date soumission': submissionDate
+      }).then(function () {
         showContactConfirmation();
-      }
+      }).catch(function (err) {
+        console.error('FormSubmit error:', err);
+        showContactConfirmation();
+      });
     });
   }
 
